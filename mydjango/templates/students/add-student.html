@@ -1,0 +1,73 @@
+{% extends 'master.html'%} {%block title%} Students - MyDjango {%endblock%} 
+{% block content%}
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Add Students{{student.firstname}}</h1>
+      <p class="lead text-muted">
+        Modile lets you easily add students records.
+      </p>
+      <p>
+        <a href="/school/add" class="btn btn-primary my-2">Add Students</a>
+        <a href="/schools" class="btn btn-secondary my-2"> View Schools</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<div class="container">
+  <form method="POST" enctype="multipart/form-data" action="/student/add/">
+  {% csrf_token %} 
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="First name" />
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Last name" />
+      </div>
+    </div>
+    {% if error_message %} <p><strong>{{ error_message }}</strong></p>{%endif %}
+
+    <div class="row pt-2">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Parents Name" />
+      </div>
+      <div class="col">
+        <select id="inputState" class="form-control">
+          <option selected>Choose your school </option>
+          {%for schools in schools %}
+          <option>{{ schools.school_name }}</option>
+          {%endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="row pt-2">
+      <div class="col">
+        <textarea type="textarea" class="form-control" value="{{student.about}}"  >About you</textarea>
+      </div>
+      
+    </div>
+
+
+    <div class="row pt-2">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Course" value="{{student.course}}"/>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="District"  value="{{student.district}}"/>
+      </div>
+    </div>
+
+
+    <div class="row pt-2">
+      <div class="col">
+        <input type="submit" class="btn btn-success mb-2" value="Add Student"> 
+      </div>
+    </div>
+ 
+  </form>
+</div>
+{%endblock%}

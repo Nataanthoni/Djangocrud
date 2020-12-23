@@ -1,0 +1,48 @@
+{% extends 'master.html'%}
+{%block title%} Students - MyDjango {%endblock%}
+{% block content%}
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Students</h1>
+      <p class="lead text-muted">Students module with various implementation requirements leading to the collection below — its contents, the creator, etc. Make it short and sweet, but not too short.</p>
+      <p>
+        <a href="/student/add" class="btn btn-primary my-2">Add Students</a>
+        <a href="/schools" class="btn btn-secondary my-2"> View Schools</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      
+      {% for student in students%}
+      <div class="col">
+        <div class="card shadow-sm">
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+          <div class="card-body">
+            <h5 class="card-text"><strong>{{student.name}}</strong></h5>
+            <p class="card-text">{{student.about|slice:"100"}} ...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-muted">{{student.course}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {% endfor%}
+      <!-- end student row -->
+      
+    </div>
+  </div>
+</div>
+{%endblock%}
